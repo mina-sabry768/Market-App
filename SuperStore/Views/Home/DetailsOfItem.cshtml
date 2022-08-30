@@ -1,0 +1,42 @@
+﻿@model SuperStore.Models.BuyItem
+
+@{
+    ViewBag.Title = "DetailsOfItem";
+}
+
+<h2>DetailsOfItem</h2>
+
+<div>
+    <h4>BuyItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.item.ItemTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item.ItemTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "GetItemsByUser")
+</p>

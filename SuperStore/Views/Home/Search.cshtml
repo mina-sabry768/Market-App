@@ -1,0 +1,24 @@
+﻿@model IEnumerable<SuperStore.Models.Item>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+    <div>
+        <h1>Result Search</h1>
+        
+        <div class="row">
+            @foreach (var subItem in Model)
+            {
+             
+                <div class="col-md-3 thumbnail">
+                    <img src="~/Uploads/@subItem.ItemImage" />
+                    <h3>@Html.DisplayFor(modelItem => subItem.ItemTitle)</h3>
+                    <h4>@Html.DisplayFor(modelItem => subItem.ItemContent)</h4>
+                    @Html.ActionLink("Details", "Details", new { ItemId = subItem.Id }, new { @class = "btn btn-primary" }) |
+                </div>
+
+            }
+        </div>
+    </div>

@@ -1,0 +1,273 @@
+﻿@model IEnumerable<SuperStore.Models.Category>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- shop -->
+            <div class="col-md-4 col-xs-6">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="~/Image/shop01.png" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>Laptop<br>Collection</h3>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            <p href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-down"></i></p>
+                            <input class="btn btn-danger" type="submit" name="searchName" id="searchName" placeholder="Shop Now" value="Mobile" />
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <!-- /shop -->
+            <!-- shop -->
+            <div class="col-md-4 col-xs-6">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="~/Image/shop03.png" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>Accessories<br>Collection</h3>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            <p href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-down"></i></p>
+                            <input class="btn btn-danger" type="submit" name="searchName" id="searchName" placeholder="Shop Now" value="laptop" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <!-- /shop -->
+            <!-- shop -->
+            <div class="col-md-4 col-xs-6">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="~/Image/shop02.png" alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>Cameras<br>Collection</h3>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            <p href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-down"></i></p>
+                            <input class="btn btn-danger" type="submit" name="searchName" id="searchName" placeholder="Shop Now" value="Desktop" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <!-- /shop -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <h3 class="title">New Products</h3>
+            @foreach (var item in Model)
+            {
+                <!-- section title -->
+                <div class="col-md-12">
+                    <div class="section-title">
+
+                        <div class="section-nav">
+                            <ul class="section-tab-nav tab-nav">
+
+                                <li><a data-toggle="tab" href="#tab1">@Html.DisplayFor(modelItem => item.CategoryName)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /section title -->
+                <!-- Products tab & slick -->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <!-- tab -->
+                            <div id="tab1" class="tab-pane active">
+                                <div class="products-slick" data-nav="#slick-nav-1">
+                                    <!-- product -->
+                                    @foreach (var subItem in item.Items)
+                                    {
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <img src="~/Uploads/@subItem.ItemImage" />
+
+                                            </div>
+                                            <div class="product-body">
+                                                <p class="product-category">@Html.DisplayFor(modelItem => subItem.ItemTitle)</p>
+                                                <h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => subItem.ItemTitle)</a></h3>
+                                                <h4 class="product-price">$@Html.DisplayFor(modelItem => subItem.Price)</h4>
+                                                <div class="product-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="product-btns">
+                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                                    @Html.ActionLink(" ", "Details", new { ItemId = subItem.Id }, new { @class = "fa fa-eye" })
+                                                </div>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                            </div>
+                                        </div>
+                                    }
+                                    <!-- /product -->
+                                </div>
+                                <div id="slick-nav-1" class="products-slick-nav"></div>
+                            </div>
+                            <!-- /tab -->
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+@*@foreach (var item in Model)
+    {
+        <div class="panel panel-default">
+            <h1>@Html.DisplayFor(modelItem => item.CategoryName)</h1>
+            <h5>@Html.DisplayFor(modelItem => item.CategoryDescription)</h5>
+            <div class="row">
+                @foreach (var subItem in item.Items)
+                {
+
+                    <div class="col-md-3 thumbnail">
+                        <img src="~/Uploads/@subItem.ItemImage" />
+                        <h3>@Html.DisplayFor(modelItem => subItem.ItemTitle)</h3>
+                        <h4>@Html.DisplayFor(modelItem => subItem.ItemContent)</h4>
+                        @Html.ActionLink("Details", "Details", new { ItemId = subItem.Id }, new { @class = "btn btn-info" })
+                    </div>
+
+                }
+            </div>
+        </div>
+    }*@
+
+
+<!-- HOT DEAL SECTION -->
+<div id="hot-deal" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hot-deal">
+                    <ul class="hot-deal-countdown">
+                        <li>
+                            <div>
+                                <h3>02</h3>
+                                <span>Days</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>10</h3>
+                                <span>Hours</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>34</h3>
+                                <span>Mins</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>60</h3>
+                                <span>Secs</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <h2 class="text-uppercase">hot deal this week</h2>
+                    <p>New Collection Up to 50% OFF</p>
+                    <a class="primary-btn cta-btn" href="#">Shop now</a>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /HOT DEAL SECTION -->
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 col-xs-6">
+                    <div class="section-title">
+                        <h4 class="title">Top selling</h4>
+                    </div>
+
+                    <div class="products-widget-slick" data-nav="#slick-nav-3">
+                        <div>
+                            @foreach (var subItem in item.Items)
+                            {
+                                <!-- product widget -->
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="~/Uploads/@subItem.ItemImage" />
+                                    </div>
+                                    <div class="product-body">
+                                        <p class="product-category">@Html.DisplayFor(modelItem => item.CategoryName)</p>
+                                        <h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => subItem.ItemTitle)</a></h3>
+                                        <h4 class="product-price">$@Html.DisplayFor(modelItem => subItem.Price)</h4>
+                                    </div>
+                                </div>
+                                <!-- /product widget -->
+                            }
+                        </div>
+
+                        <div>
+                            @foreach (var subItem in item.Items)
+                            {
+                                <!-- product widget -->
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="~/Uploads/@subItem.ItemImage" />
+                                    </div>
+                                    <div class="product-body">
+                                        <p class="product-category">@Html.DisplayFor(modelItem => item.CategoryName)</p>
+                                        <h3 class="product-name"><a href="#">@Html.DisplayFor(modelItem => subItem.ItemTitle)</a></h3>
+                                        <h4 class="product-price">$@Html.DisplayFor(modelItem => subItem.Price)</h4>
+                                    </div>
+                                </div>
+                                <!-- /product widget -->
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <!-- /row -->
+</div>
+
+<!-- /container -->
+<!-- /SECTION -->

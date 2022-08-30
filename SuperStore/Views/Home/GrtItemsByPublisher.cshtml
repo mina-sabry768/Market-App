@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SuperStore.Models.ItemsViewModel>
+
+@foreach (var gr in Model)
+{
+    <h3>@gr.Itemtitle</h3>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                Buyer Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Buy Date
+            </th>
+        </tr>
+        @foreach (var item in gr.Listes)
+        {
+            <tr>
+                <td>
+                    @item.user.UserName
+                </td>
+                <td>
+                    @item.Address
+                </td>
+                <td>
+                    @item.BuyDate
+                </td>
+            </tr>
+        }
+    </table>
+}
